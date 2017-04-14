@@ -208,4 +208,4 @@ Is the docker client getting the `EAGAIN (Resource temporarily unavailable)`? Bu
 ###### Network usage:
 ![network-usage](network-usage.png)
 
-(sure, there is no network happening in this test)
+(sure, there is no networking happening in this test)
