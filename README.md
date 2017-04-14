@@ -44,6 +44,8 @@ PS: It's just a quick&dirty benchmark to check why serverspec is so slow.
 |     100     |       13 - 22 |            ~ 120 |            40 |
 
 So there is a limit of 18 to 20 `docker exec` calls to docker api?
+When running with 100 concurrent `docker exec` processes the load is betwen 1.6 and 2.2.
+CPU usage around 5 % user, 3 % sys and 92 % idle, 12 GB free memory without swapping.
 
 ## Why?
 
