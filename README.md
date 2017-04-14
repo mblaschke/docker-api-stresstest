@@ -59,7 +59,7 @@ for each container independently but it's getting slower and slower.
 Some tests are running for 6 Minutes when running 6 parallized container tests,
 with 10 parallized tests the these tests are running for about 10-15 Minutes.
 
-When 20 running serverspec the result of `docker stats` is also not reliable:
+With more then 6 running serverspec processes the result of `docker stats` is also not reliable:
 
 ![docker-stats](docker-stats.gif)
 
