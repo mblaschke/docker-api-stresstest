@@ -45,7 +45,9 @@ PS: It's just a quick&dirty benchmark to check why serverspec is so slow.
 
 So there is a limit of 18 to 20 `docker exec` calls to docker api?
 When running with 100 concurrent `docker exec` processes the load is betwen 1.6 and 2.2.
-CPU usage around 5 % user, 3 % sys and 92 % idle, 12 GB free memory without swapping.
+CPU usage around 5 % user, 3 % sys, 92 % idle and no wait. 12 GB free memory without swapping.
+
+After 20 concurrent `docker exec` processes the `docker stats` output is not realiable (see animated gif below).
 
 ## Why?
 
@@ -57,7 +59,7 @@ for each container independently but it's getting slower and slower.
 Some tests are running for 6 Minutes when running 6 parallized container tests,
 with 10 parallized tests the these tests are running for about 10-15 Minutes.
 
-When running serverspec the result of `docker stats` is also not reliable:
+When 20 running serverspec the result of `docker stats` is also not reliable:
 
 ![docker-stats](docker-stats.gif)
 
@@ -75,9 +77,11 @@ Google Cloud Compute Machine (europe-west1-d):
 * 16 vCores (Intel Haswell)
 * 14 GB RAM (never exceeded the memory limit)
 * /var/lib/docker on local 375 GB NVM scratch SSD (read: 100.000 IOPS, write: 70.000 IOPS)
-* /var/lib/docker on overlay2 (same problems with AUFS)
+* /var/lib/docker (ext4) on overlay2 (same problems with AUFS)
 * Runs only SSH and Docker
 * Only for testing, no other tasks
+
+Same problems also on a VM in Microsoft Azure (8 Cores) and on docker machine (dinghy) on a 4 core MacBook Pro.
 
 #### docker version
 
